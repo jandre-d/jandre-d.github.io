@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Piektoets Woningbouw — Kan een piektoets de woningbouw versnellen ondanks netcongestie?</title>
+<meta name="description" content="Interactieve showcase: hoe een beleidsmatige piektoets de woningbouw kan versnellen ondanks netcongestie. Onderzoek BePro STAD3 — Floris Gefken." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="progress"></div>
+
+<nav class="dotnav" aria-label="Sectienavigatie">
+  <a href="#hero" data-label="Start" class="active"></a>
+  <a href="#vraagstuk" data-label="Het vraagstuk"></a>
+  <a href="#analyse" data-label="Huidige situatie"></a>
+  <a href="#opties" data-label="Beleidsopties"></a>
+  <a href="#vergelijker" data-label="Vergelijker"></a>
+  <a href="#conclusies" data-label="Conclusies"></a>
+  <a href="#aanbevelingen" data-label="Aanbevelingen"></a>
+  <a href="#einde" data-label="Slot"></a>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero" id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">BePro STAD3 · Built Environment</span>
+      <h1>Kan een piektoets de woningbouw <span class="hl">versnellen</span> ondanks netcongestie?</h1>
+      <p class="subtitle">Het net zit vol — niet omdat we te veel verbruiken, maar omdat we allemaal tegelijk piekvragen.</p>
+      <p class="intro">Energieneutrale nieuwbouw voldoet aan BENG, maar die norm kijkt naar jaarverbruik, niet naar het piekvermogen op een koude winteravond. Dit onderzoek verkent één beleidsknop — een vroege piektoets — en rekent voor wat die oplevert: van een vastgelopen wijk naar honderden extra woningen.</p>
+      <div class="hero-cta">
+        <a href="#vraagstuk" class="btn btn-primary">Ontdek het onderzoek
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#vergelijker" class="btn btn-ghost">Naar de woningbouwvergelijker</a>
+      </div>
+      <div class="hero-meta">
+        <div class="m"><b>Onderzoek</b>Floris Gefken</div>
+        <div class="m"><b>Begeleider</b>Christan Buurstee</div>
+        <div class="m"><b>Methode</b>Literatuur · expert · casus</div>
+      </div>
+    </div>
+    <aside class="hero-visual">
+      <div class="district" aria-hidden="true">
+        <div class="plots" id="hero-plots"></div>
+        <div class="pulse"></div>
+        <div class="station">wijkstation<b>400 kVA</b></div>
+      </div>
+    </aside>
+  </div>
+  <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
+</header>
+
+<!-- ============================ HET VRAAGSTUK ============================ -->
+<section class="pad" id="vraagstuk">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--blue-500)">01 — Het vraagstuk</span>
+      <h2>Twee crises die elkaar in de weg zitten</h2>
+      <p>Nederland heeft te weinig woningen én te weinig netcapaciteit om ze aan te sluiten. Hoe duurzamer we bouwen, hoe groter de kans dat een project alsnog stilvalt op het stroomnet.</p>
+    </div>
+
+    <div class="grid g-4" style="margin-bottom:48px">
+      <div class="stat navy reveal">
+        <div class="num"><span data-count="2.33" data-dec="2">0</span><span class="u">kW</span></div>
+        <div class="lab">Piekvraag van een warmtepompwoning op een normale winterdag — oplopend tot <b>3,84&nbsp;kW</b> bij extreme kou.</div>
+        <div class="src">ADMD · Mehdipour et al., 2024</div>
+      </div>
+      <div class="stat reveal d1">
+        <div class="num"><span data-count="8.5" data-dec="1">0</span><span class="u">×</span></div>
+        <div class="lab">Zo veel hoger kan de wijkpiek uitvallen bij ongecontroleerd elektrisch laden (3&nbsp;tot&nbsp;8,5×).</div>
+        <div class="src">Muratori, 2017</div>
+      </div>
+      <div class="stat reveal d2">
+        <div class="num"><span data-count="8760" data-dec="0">0</span></div>
+        <div class="lab">Uurwaarden per jaar waarmee netbeheerders écht rekenen — geen enkel kW-getal.</div>
+        <div class="src">Expertinterview, 2026</div>
+      </div>
+      <div class="stat green reveal d3">
+        <div class="num"><span data-count="0" data-dec="0">0</span></div>
+        <div class="lab">Criteria voor piekvermogen (kW) in de hele BENG-systematiek. De norm stuurt alleen op jaarverbruik.</div>
+        <div class="src">RVO · BENG 1/2/3</div>
+      </div>
+    </div>
+
+    <p class="lead reveal" style="max-width:760px;margin-bottom:30px"><b style="color:var(--ink)">De paradox in vier stappen.</b> De norm die woningen duurzaam maakt, ziet juist het probleem niet dat ze veroorzaken.</p>
+    <div class="chain reveal d1">
+      <div class="link">
+        <div class="k">Stap 1 · de norm</div>
+        <h4>BENG stuurt op kWh</h4>
+        <p>De norm rekent met jaarverbruik en hernieuwbaar aandeel — niet met het vermogen op één moment.</p>
+        <div class="arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="link">
+        <div class="k">Stap 2 · de woning</div>
+        <h4>Hoge gelijktijdige piek</h4>
+        <p>Warmtepomp, inductie én EV-laden vragen op de winteravond samen méér dan een oude woning.</p>
+        <div class="arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="link">
+        <div class="k">Stap 3 · het net</div>
+        <h4>Lokale netcongestie</h4>
+        <p>Wijkpieken stapelen op tot boven de capaciteit van het wijkstation. Het net zit vol.</p>
+        <div class="arrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="link">
+        <div class="k">Stap 4 · het gevolg</div>
+        <h4>Woningbouw valt stil</h4>
+        <p>Aansluitingen worden geweigerd. Nieuwbouw staat soms maanden leeg — soms op een dieselaggregaat.</p>
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ANALYSE ============================ -->
+<section class="pad bg-paper2" id="analyse">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--blue-500)">02 — De huidige situatie</span>
+      <h2>kWh en kW zijn twee verschillende werelden</h2>
+      <p>Een woning kan op jaarbasis netto-nul scoren en tóch op het verkeerde moment het net overbelasten. Dat onderscheid is de kern van het hele onderzoek.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:64px">
+      <div class="reveal">
+        <h3 style="font-size:1.5rem;margin-bottom:18px">Wat BENG wél en níet toetst</h3>
+        <div class="beng">
+          <div class="row">
+            <span class="tag">BENG 1</span>
+            <span class="t"><b>Energiebehoefte</b> voor verwarming &amp; koeling — in kWh/m² per jaar.</span>
+          </div>
+          <div class="row">
+            <span class="tag">BENG 2</span>
+            <span class="t"><b>Primair fossiel energiegebruik</b> — in kWh/m² per jaar.</span>
+          </div>
+          <div class="row">
+            <span class="tag">BENG 3</span>
+            <span class="t"><b>Aandeel hernieuwbare energie</b> — in procenten.</span>
+          </div>
+          <div class="verdict">
+            <span class="x"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span>
+            <span class="t">Geen van de drie kent een norm voor <b>piekvermogen (kW)</b>. De gelijktijdige piek blijft volledig ongetoetst.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal d1">
+        <div class="heat-wrap">
+          <div class="ht">
+            <h4>Wijkbelasting over 14 dagen</h4>
+            <span>% van stationscapaciteit</span>
+          </div>
+          <div class="heatmap" role="img" aria-label="Heatmap van de wijkbelasting per uur: scherpe pieken op de winteravonden."></div>
+          <div class="heat-axis"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>23:00</span></div>
+          <div class="heat-legend">
+            <span>laag</span>
+            <span class="scale"><i style="background:#e3f0f9"></i><i style="background:#bfdcf1"></i><i style="background:#8cc0e6"></i><i style="background:#5b9fd0"></i><i style="background:#e8a33d"></i><i style="background:#c0392b"></i></span>
+            <span>piek</span>
+          </div>
+          <p class="heat-cap">Schematische weergave op basis van de onderzoeksdata. De avondpiek (18–21u) bepaalt het ontwerp van het net — niet het rustige jaargemiddelde. Netbeheerders werken met dit type uurprofiel, niet met één vuistgetal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="reveal">
+        <div class="quote">
+          <blockquote>"Het verschil tussen verbruik en vermogen is immens. De eerste deelvraag is met grote letters te beantwoorden: ja."</blockquote>
+          <div class="by">— Ron van Wieringen · netcongestie-specialist, Twycis (i.s.m. TenneT)</div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <h3 style="font-size:1.5rem;margin-bottom:8px">Uit de praktijk</h3>
+        <p style="color:var(--ink-soft);margin-bottom:8px">Wat de expert toevoegt aan de literatuur. Klik om uit te klappen.</p>
+        <div class="accordion">
+          <div class="item">
+            <button class="q">Het is niet alleen verbruik — ook teruglevering<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+            <div class="a"><p>Gelijktijdige teruglevering van zonnepanelen in een woonwijk vormt een even groot netprobleem als de avondpiek van warmtepompen en laden. Netcongestie ontstaat aan twee kanten tegelijk.</p></div>
+          </div>
+          <div class="item">
+            <button class="q">Gedrag is de dominante variabele<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+            <div class="a"><p>Menselijk gedrag bepaalt de piek het sterkst — zelfs de overgang naar zomertijd is direct zichtbaar in de meetprofielen. Daarom werkt sturen op gedrag (zoals slim laden) zo goed.</p></div>
+          </div>
+          <div class="item">
+            <button class="q">Daarom zie je nog weinig formele weigeringen<span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+            <div class="a"><p>Kleinverbruikersaansluitingen — waaronder woningbouw — mochten wettelijk niet worden geweigerd. Pas per 1 juli 2026 kunnen kleinverbruikers op een wachtlijst worden geplaatst. Het knelpunt is daardoor lang onzichtbaar gebleven in de cijfers.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ BELEIDSOPTIES ============================ -->
+<section class="pad" id="opties">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--blue-500)">03 — Onderzochte beleidsopties</span>
+      <h2>Drie knoppen om de piek te verlagen</h2>
+      <p>Elke maatregel verlaagt het piekvermogen per woning — en dáármee het aantal woningen dat op hetzelfde net past. In de vergelijker hierna reken je ze door.</p>
+    </div>
+
+    <div class="grid g-3">
+      <!-- S1 -->
+      <article class="opt s1 reveal">
+        <span class="badge">Scenario S1</span>
+        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="14" y="6" width="20" height="36" rx="3"/><path d="M24 14l-4 8h8l-4 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Slim laden van EV's</h3>
+        <p>Time-of-use-tarieven verschuiven het laden weg van de avondpiek. Stuurt gedrag via de prijs.</p>
+        <div class="reduc">piekreductie<b>−10 tot −45%</b>TOU / coördinatie · Williams 2024, Sørensen 2021</div>
+        <div class="pn">
+          <div class="li pro"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Geen collectieve contracten of fysieke ruimte nodig</span></div>
+          <div class="li pro"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Snel in te voeren via bestaand prijsinstrumentarium</span></div>
+          <div class="li con"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span><span>Afhankelijk van smart-meter-penetratie en gedrag</span></div>
+        </div>
+      </article>
+
+      <!-- S2 -->
+      <article class="opt s2 reveal d1">
+        <span class="badge">Scenario S2</span>
+        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="8" y="20" width="14" height="20" rx="2"/><path d="M26 8h14v12H26z"/><path d="M28 26h12v14H28z" /><path d="M15 14v6" stroke-linecap="round"/></svg>
+        <h3>Buurtbatterij + PV</h3>
+        <p>Lokale opslag en opwek vangen de piek deels in de wijk op — en dempen ook de teruglever-piek.</p>
+        <div class="reduc">piekreductie<b>−21 tot −65%</b>opslag + opwek · Tumminia 2019, DSM Mehdipour 2024</div>
+        <div class="pn">
+          <div class="li pro"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Werkt op zowel afname- als terugleverpiek</span></div>
+          <div class="li con"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span><span>Vraagt fysieke ruimte en PV-daken</span></div>
+          <div class="li con"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span><span>Juridisch/financieel complex; geldt nu niet als netzekerheid</span></div>
+        </div>
+      </article>
+
+      <!-- S3 -->
+      <article class="opt s3 reveal d2">
+        <span class="badge">Scenario S3</span>
+        <svg class="ic" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="24" cy="24" r="16"/><path d="M24 24l9-5" stroke-linecap="round"/><path d="M24 10v4M38 24h-4" stroke-linecap="round"/></svg>
+        <h3>Vermogenslimiet</h3>
+        <p>Warmtepompen worden op piekmomenten begrensd (throttling). Operationeel de krachtigste knop.</p>
+        <div class="reduc">piekreductie<b>−40 tot −65%</b>throttling op commando · Mehdipour 2024</div>
+        <div class="pn">
+          <div class="li pro"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Grootste piekreductie, geen extra ruimte nodig</span></div>
+          <div class="li con"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span><span>Vraagt smart-control-infrastructuur</span></div>
+          <div class="li con"><span class="s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></span><span>Ingrijpend in comfort; rebound-pieken beheersen</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WONINGBOUWVERGELIJKER ============================ -->
+<section class="pad comparer" id="vergelijker">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 — Woningbouwvergelijker</span>
+      <h2>Kies een beleidskeuze. Zie direct hoeveel woningen passen.</h2>
+      <p>Hetzelfde wijkstation (400&nbsp;kVA), dezelfde wijk. Zonder maatregel zit die vol bij 150 woningen. Verlaag de piek per woning en de bottleneck verschuift — van het net naar het woningontwerp.</p>
+    </div>
+
+    <div class="cmp reveal d1">
+      <!-- selector -->
+      <div class="scn" role="tablist" aria-label="Beleidsscenario's">
+        <button data-scn="basis" role="tab">
+          <div class="tp"><span class="nm">Basis</span><span class="pct">0%</span></div>
+          <div class="ds">Geen maatregel — het net is de harde grens</div>
+        </button>
+        <button data-scn="s1" role="tab" class="active">
+          <div class="tp"><span class="nm">S1 · Slim laden</span><span class="pct">−30%</span></div>
+          <div class="ds">TOU-tarieven sturen het EV-laden</div>
+        </button>
+        <button data-scn="s2" role="tab">
+          <div class="tp"><span class="nm">S2 · Buurtbatterij + PV</span><span class="pct">−40%</span></div>
+          <div class="ds">Lokale opslag en opwek</div>
+        </button>
+        <button data-scn="s3" role="tab">
+          <div class="tp"><span class="nm">S3 · Vermogenslimiet</span><span class="pct">−50%</span></div>
+          <div class="ds">Throttling van warmtepompen</div>
+        </button>
+        <button data-scn="combi" role="tab">
+          <div class="tp"><span class="nm">Combinatie</span><span class="pct">−80%</span></div>
+          <div class="ds">Alle drie samen, gecapt op 80%</div>
+        </button>
+        <p class="hint">Rekenmodel: max woningen = netcapaciteit (kW) ÷ (basispiek × (1 − reductie) × gelijktijdigheidsfactor). Geijkt op 150 woningen zonder maatregel.</p>
+      </div>
+
+      <!-- result panel -->
+      <div class="cmp-panel">
+        <div class="cmp-top">
+          <div class="cmp-big">
+            <div class="k">Aansluitbare woningen</div>
+            <div class="v" id="cmp-homes">150<small>woningen</small></div>
+            <div class="cmp-delta" id="cmp-delta"></div>
+          </div>
+          <div class="gauge">
+            <div class="gl"><span>0 kW</span><span>basispiek 2,53 kW</span></div>
+            <div class="track"><div class="fill" id="gauge-fill" style="width:70%"></div></div>
+            <div class="gv" id="gauge-val">piek per woning <b>1,77 kW</b></div>
+          </div>
+        </div>
+
+        <div class="hood">
+          <div class="hl">
+            <span class="t">De wijk op hetzelfde net</span>
+            <span class="leg">
+              <span><i style="background:var(--sky-300)"></i> basis (150)</span>
+              <span><i style="background:var(--green-500)"></i> extra mogelijk</span>
+            </span>
+          </div>
+          <div class="dotgrid" id="dotgrid" aria-hidden="true"></div>
+          <p class="hcap">elk blok = 5 woningen</p>
+        </div>
+
+        <div class="effects">
+          <div class="eff" id="eff-ruimte">
+            <div class="et">Extra ruimte nodig</div>
+            <div class="segs"><i></i><i></i><i></i></div>
+            <div class="ev">—</div>
+          </div>
+          <div class="eff" id="eff-infra">
+            <div class="et">Infrastructuur-inspanning</div>
+            <div class="segs"><i></i><i></i><i></i></div>
+            <div class="ev">—</div>
+          </div>
+          <div class="eff" id="eff-haalb">
+            <div class="et">Haalbaarheid korte termijn</div>
+            <div class="segs"><i></i><i></i><i></i></div>
+            <div class="ev">—</div>
+          </div>
+        </div>
+
+        <div class="cmp-policy" id="cmp-policy">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="t"><b>Beleid</b>Selecteer een scenario.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONCLUSIES ============================ -->
+<section class="pad" id="conclusies">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--blue-500)">05 — Conclusies</span>
+      <h2>Sturen op de piek verandert de schaal van de opgave</h2>
+      <p>Dezelfde grond, hetzelfde net. Het verschil zit in één beleidsmatige keuze aan de voorkant van het proces.</p>
+    </div>
+
+    <div class="concl-hero reveal">
+      <div class="c blue">
+        <div class="big"><span data-count="150" data-dec="0">0</span></div>
+        <div class="lab">woningen zonder maatregel — de wijk zit vol op de huidige netcapaciteit.</div>
+      </div>
+      <div class="c green">
+        <div class="big">+<span data-count="601" data-dec="0">0</span></div>
+        <div class="lab">extra woningen mogelijk met een gecombineerd maatregelpakket: een verviervoudiging.</div>
+      </div>
+      <div class="c navy">
+        <div class="big"><span data-count="2.3" data-dec="1">0</span><small>kW</small></div>
+        <div class="lab">de voorgestelde pieknorm per woning (winterdag) — toetsbaar vóór het ontwerp vastligt.</div>
+      </div>
+    </div>
+
+    <div class="insights reveal d1">
+      <div class="insight">
+        <div class="n">01</div>
+        <div class="it">
+          <h4>De bottleneck verschuift</h4>
+          <p>Zonder maatregel is de netcapaciteit de bindende grens. Met piekreductie verschuift die grens naar het ontwerp en de aansturing van de woning zelf — en dat is wél beïnvloedbaar in de planfase.</p>
+        </div>
+      </div>
+      <div class="insight">
+        <div class="n">02</div>
+        <div class="it">
+          <h4>BENG borgt het knelpunt niet</h4>
+          <p>Een woning kan volledig BENG-conform zijn en tóch een hoge gelijktijdige piek veroorzaken. Jaarverbruik (kWh) en piekvermogen (kW) zijn twee losse werelden — en alleen de eerste wordt nu getoetst.</p>
+        </div>
+      </div>
+      <div class="insight">
+        <div class="n">03</div>
+        <div class="it">
+          <h4>Een vroege piektoets werkt — mits onderbouwd</h4>
+          <p>Op basis van het kVA-getal van het wijkstation kan de gemeente vóór de stedenbouwkundige keuzes het maximale aantal woningen berekenen. Overschrijden mag, maar dan geldt een onderbouwingsplicht: laat zien welke maatregelmix de norm haalt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ AANBEVELINGEN ============================ -->
+<section class="pad bg-paper2" id="aanbevelingen">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--blue-500)">06 — Aanbevelingen</span>
+      <h2>Voor gemeente, netbeheerder en ontwikkelaar</h2>
+      <p>Zes aanbevelingen uit de literatuur en het expertinterview — elk met de onderbouwing en het verwachte effect.</p>
+    </div>
+
+    <div class="grid g-3">
+      <article class="rec reveal">
+        <span class="lt">A</span>
+        <span class="who">Gemeente</span>
+        <h3>Veranker de piektoets in het omgevingsplan</h3>
+        <div class="field"><div class="fl">Waarom</div><div class="fv">Vraag vóór de stedenbouwkundige randvoorwaarden een capaciteitsverklaring (kVA) van de netbeheerder.</div></div>
+        <div class="field effect"><div class="fl">Verwacht effect</div><div class="fv">Eerder zicht op aansluitbaarheid, minder herontwerprondes laat in het traject.</div></div>
+      </article>
+      <article class="rec reveal d1">
+        <span class="lt">B</span>
+        <span class="who">Netbeheerder</span>
+        <h3>Publiceer ADMD-data per woningtype</h3>
+        <div class="field"><div class="fl">Waarom</div><div class="fv">Zo rekenen gemeente en ontwikkelaar in de initiatieffase met dezelfde getallen.</div></div>
+        <div class="field effect"><div class="fl">Verwacht effect</div><div class="fv">Transparante en uniforme toepassing van de piektoets.</div></div>
+      </article>
+      <article class="rec reveal d2">
+        <span class="lt">C</span>
+        <span class="who">Ontwikkelaar</span>
+        <h3>Maak piekbelasting een harde ontwerpparameter</h3>
+        <div class="field"><div class="fl">Waarom</div><div class="fv">Neem de piek naast BENG mee. Sterkste mix: slim laden + buurtbatterij/PV + vermogenslimiet.</div></div>
+        <div class="field effect"><div class="fl">Verwacht effect</div><div class="fv">De piek wordt stuurbaar al in de planfase.</div></div>
+      </article>
+      <article class="rec reveal">
+        <span class="lt">D</span>
+        <span class="who">Expert · slim laden</span>
+        <h3>Begin met slim laden via TOU-tarieven</h3>
+        <div class="field"><div class="fl">Waarom</div><div class="fv">Een financiële prikkel stuurt gedrag zonder collectieve contracten — de meest haalbare eerste stap.</div></div>
+        <div class="field effect"><div class="fl">Verwacht effect</div><div class="fv">Directe verlaging van de avondpiek, zonder contractuele drempels.</div></div>
+      </article>
+      <article class="rec reveal d1">
+        <span class="lt">E</span>
+        <span class="who">Expert · opslag</span>
+        <h3>Subsidieer thuis- en buurtbatterijen</h3>
+        <div class="field"><div class="fl">Waarom</div><div class="fv">Een batterij verlaagt de effectieve piek per woning en verbetert het prognoseprofiel.</div></div>
+        <div class="field effect"><div class="fl">Verwacht effect</div><div class="fv">Lagere prognosewaarden en gunstiger netplanning.</div></div>
+      </article>
+      <article class="rec reveal d2">
+        <span class="lt">F</span>
+        <span class="who">Expert · sturing</span>
+        <h3>Stuur batterijen op congestie, niet op prijs</h3>
+        <div class="field"><div class="fl">Waarom</div><div class="fv">Slimme batterijen reageren nu op marktprijzen — die niet parallel lopen aan het congestieprobleem.</div></div>
+        <div class="field effect"><div class="fl">Verwacht effect</div><div class="fv">Netbeheerder kan congestie lokaal sturen, los van de markt.</div></div>
+      </article>
+    </div>
+
+    <div class="timeline reveal d1">
+      <div class="tl">
+        <span class="dot"></span>
+        <div class="when">0 – 6 maanden</div>
+        <h4>Netbeheerders publiceren data</h4>
+        <p>ADMD-waarden en gelijktijdigheidsfactor per woningtype openbaar maken, zodat iedereen met dezelfde cijfers rekent.</p>
+      </div>
+      <div class="tl">
+        <span class="dot"></span>
+        <div class="when">6 – 18 maanden</div>
+        <h4>Gemeenten verankeren de toets</h4>
+        <p>De piektoets opnemen in omgevingsplannen, met een onderbouwingsplicht bij overschrijding van de capaciteit.</p>
+      </div>
+      <div class="tl">
+        <span class="dot"></span>
+        <div class="when">vanaf 18 maanden</div>
+        <h4>Ontwerpcriterium &amp; evaluatie</h4>
+        <p>Ontwikkelaars nemen de piek als ontwerpcriterium; het Rijk evalueert opname in BENG of een AMvB onder de Omgevingswet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EINDSCHERM ============================ -->
+<section class="pad outro" id="einde">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--sky-300);justify-content:center;display:flex">Slot</span>
+    <h2 style="margin-top:18px">Bouwen begint met de piek — niet met de aansluiting</h2>
+    <p>Eén beleidsknop aan de voorkant van het proces kan een vastgelopen wijk laten groeien van 150 naar honderden woningen. De techniek is er. Wat ontbreekt, is de toets op het juiste moment.</p>
+    <div class="cta">
+      <a href="assets/Onderzoeksrapport-Piektoets-Woningbouw.docx" class="btn btn-primary" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download het volledige rapport
+      </a>
+      <a href="#vergelijker" class="btn btn-ghost">Terug naar de vergelijker</a>
+    </div>
+    <div class="contact">
+      <div class="c"><b>Onderzoek</b>Floris Gefken · Studentnr. 1890110</div>
+      <div class="c"><b>Cursus</b>BePro STAD3 — Built Environment</div>
+      <div class="c"><b>Begeleider</b>Christan Buurstee</div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Piektoets Woningbouw · interactieve showcase</span>
+    <span>© <span id="year">2026</span> Floris Gefken — BePro STAD3</span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+  /* hero plot animation — fill a few cells, mark the station node hot */
+  (function () {
+    var plots = document.getElementById('hero-plots');
+    if (!plots) return;
+    var total = 56; // 8 x 7
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('div');
+      d.className = 'plot';
+      plots.appendChild(d);
+    }
+    var cells = plots.querySelectorAll('.plot');
+    var order = [];
+    for (var k = 0; k < cells.length; k++) order.push(k);
+    order.sort(function () { return Math.random() - 0.5; });
+    var lit = 0;
+    var iv = setInterval(function () {
+      if (lit >= 34) { clearInterval(iv); return; }
+      var idx = order[lit];
+      cells[idx].classList.add(lit % 7 === 0 ? 'hot' : 'on');
+      lit++;
+    }, 70);
+  })();
+</script>
+
+</body>
+</html>
